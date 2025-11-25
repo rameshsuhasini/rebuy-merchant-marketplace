@@ -1,0 +1,17 @@
+.c-page-title {
+    margin: 1rem 0;
+}
+
+.offers.grid {
+    display: grid;
+    gap: 1rem;
+    
+    @media (min-width: 600px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 960px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+

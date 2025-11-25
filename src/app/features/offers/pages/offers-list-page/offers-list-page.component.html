@@ -1,1 +1,11 @@
-<p>offers-list-page works!</p>
+<h1 class="c-page-title">Top Offers</h1>
+
+<div class="offers-grid">
+  <app-offer-card
+    *ngFor="let offer of offers$ | async; trackBy: trackById"
+    [offer]="offer"
+    (upvote)="OnUpVote($event)"
+    (downvote)="OnDownVote($event)"
+    (viewDetails)="OnViewDetails($event)"
+  ></app-offer-card>
+</div>
