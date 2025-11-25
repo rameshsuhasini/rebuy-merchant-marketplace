@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Offer } from '../../../../core/models/offer.model';
-import { OfferApiService } from '../../../../core/api/offer-api.service';
+import { OfferService } from '../../../../core/services/offer.service';
+
 @Component({
   selector: 'app-offers-list-page',
   standalone: true,
@@ -16,11 +17,10 @@ import { OfferApiService } from '../../../../core/api/offer-api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OffersListPageComponent {
-  offers$: Observable<Offer[]> = this.offerApi
-    .getOffers()
-    .pipe(map((offers) => [...offers].sort((a, b) => b.votes - a.votes)));
+  offers$: Observable<Offer[]> = this.offerService.getOffersSortedByVotes();
+  loading$ = this.offerService.loading$;
 
-  constructor(private offerApi: OfferApiService,
+  constructor(private offerService: OfferService,
      private router: Router) {}
 
      trackById(index: number, offer: Offer): number {
@@ -29,9 +29,11 @@ export class OffersListPageComponent {
 
      OnUpVote(id: number): void {
       console.log('Upvote', id);
+      this.offerService.upvote(id);
      }
       OnDownVote(id: number): void {
       console.log('Upvote', id);
+        this.offerService.downvote(id);
      }
       OnViewDetails(id: number): void {
       console.log('Upvote', id);

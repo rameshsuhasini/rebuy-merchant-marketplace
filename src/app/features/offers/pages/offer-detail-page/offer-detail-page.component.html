@@ -9,12 +9,26 @@
   <div class="detail-layout__info">
     <h1>{{ offer.title }}</h1>
     <h3>{{ offer.merchant }}</h3>
+
+
     <p>{{ offer.description }}</p>
 
     <p class="price">{{ offer.price | currency: 'EUR' }}</p>
-    <p class="rating"><mat-icon>star</mat-icon> {{ offer.rating }} | <mat-icon>thumb_up</mat-icon>{{ offer.votes }}</p>
+    <p class="rating">
+        <mat-icon>star</mat-icon>
+         {{ offer.rating }} 
+           &nbsp;&nbsp;
+         <mat-icon>thumb_up</mat-icon>
+         {{ offer.votes }}
+    </p>
 
     <div class="detail-layout__actions">
+        <button mat-icon button (click)="onUpvote(offer)" aria-label="Upvote">
+            <mat-icon>thumb_up</mat-icon>
+        </button>
+            <button mat-icon button (click)="onDownvote(offer)" aria-label="Downvote">
+            <mat-icon>thumb_down</mat-icon>
+        </button>
       <button mat-raised-button color="accent" (click)="onPurchase(offer)">
         Buy on rebuy
       </button>

@@ -1,37 +1,43 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule} from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 
 import { Offer } from '../../../../core/models/offer.model';
-import { OfferApiService } from '../../../../core/api/offer-api.service';
-
-import  {MatCardModule} from  '@angular/material/card';
-import  {MatButtonModule} from  '@angular/material/button';
-import  {MatIconModule} from  '@angular/material/icon';
-
+import { OfferService } from '../../../../core/services/offer.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatRipple } from "@angular/material/core";
 
 @Component({
   selector: 'app-offer-detail-page',
   standalone: true,
-  imports: [CommonModule,RouterModule,MatButtonModule,MatCardModule,MatIconModule],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatRipple],
   templateUrl: './offer-detail-page.component.html',
   styleUrl: './offer-detail-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OfferDetailPageComponent {
-  offer$: Observable<Offer> = this.route.paramMap.pipe(
+  offer$: Observable<Offer | undefined> = this.route.paramMap.pipe(
     switchMap((params) => {
       const id = Number(params.get('id'));
-      return this.offerApi.getOfferById(id);
+      return this.offerService.getOfferById(id);
     })
   );
   constructor(
-    private offerApi: OfferApiService,
+    private offerService: OfferService,
     private route: ActivatedRoute
   ) {}
 
-   onPurchase(offer: Offer): void {
+  onUpvote(offer: Offer): void {
+    this.offerService.upvote(offer.id);
+  }
+
+  onDownvote(offer: Offer): void {
+    this.offerService.downvote(offer.id);
+  }
+
+  onPurchase(offer: Offer): void {
     window.open(offer.purchaseUrl, '_blank');
   }
 }

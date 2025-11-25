@@ -1,11 +1,17 @@
 <h3 class="c-page-title">Top Offers</h3>
 
-<div class="offers-grid">
-  <app-offer-card
-    *ngFor="let offer of offers$ | async; trackBy: trackById"
-    [offer]="offer"
-    (upvote)="OnUpVote($event)"
-    (downvote)="OnDownVote($event)"
-    (viewDetails)="OnViewDetails($event)"
-  ></app-offer-card>
-</div>
+<ng-container *ngIf="!(loading$ | async); else loading">
+  <div class="offers-grid">
+    <app-offer-card
+      *ngFor="let offer of offers$ | async; trackBy: trackById"
+      [offer]="offer"
+      (upvote)="OnUpVote($event)"
+      (downvote)="OnDownVote($event)"
+      (viewDetails)="OnViewDetails($event)"
+    ></app-offer-card>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <p>Loading offers…</p>
+</ng-template>
