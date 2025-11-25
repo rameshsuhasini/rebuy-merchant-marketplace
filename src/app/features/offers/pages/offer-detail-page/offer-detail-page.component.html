@@ -1,4 +1,4 @@
-<button mat-button routerLink="/offers">← Back to offers</button>
+<button mat-button routerLink="/offers" class="back-link">← Back to offers</button>
 
 <div *ngIf="offer$ | async as offer; else loading" class="detail-layout">
   
@@ -7,20 +7,25 @@
   </div>
 
   <div class="detail-layout__info">
-    <h1>{{ offer.title }}</h1>
-    <h3>{{ offer.merchant }}</h3>
+    <h1 class="detail-layout__title">{{ offer.title }}</h1>
+    <h3 class="detail-layout__merchant">{{ offer.merchant }}</h3>
 
+    <p class="detail-layout__description">{{ offer.description }}</p>
 
-    <p>{{ offer.description }}</p>
+    <div class="detail-layout__meta">
 
-    <p class="price">{{ offer.price | currency: 'EUR' }}</p>
-    <p class="rating">
+    <span class="detail-layout__price">
+        {{ offer.price | currency: 'EUR' }}
+    </span>
+    <span class="detail-layout__rating">
         <mat-icon>star</mat-icon>
          {{ offer.rating }} 
-           &nbsp;&nbsp;
+    </span>
+     <span class="detail-layout__votes">
          <mat-icon>thumb_up</mat-icon>
          {{ offer.votes }}
-    </p>
+    </span>
+    </div>
 
     <div class="detail-layout__actions">
         <button mat-icon button (click)="onUpvote(offer)" aria-label="Upvote">
@@ -34,7 +39,6 @@
       </button>
     </div>
   </div>
-
 </div>
 
 <ng-template #loading>
