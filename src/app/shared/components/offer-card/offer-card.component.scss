@@ -1,0 +1,40 @@
+.c-offer-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &_image {
+    object-fit: cover;
+    max-height: 180px;
+  }
+
+  &_title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  &_merchant {
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  &_body {
+    margin-top: 0.5rem;
+  }
+
+  &_price {
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+
+  &_meta {
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  &_footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.25rem;
+  }
+}

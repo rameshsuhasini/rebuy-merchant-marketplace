@@ -1,0 +1,41 @@
+<mat-card class="c-offer-card">
+  <img
+    *ngIf="offer.imageUrl"
+    mat-card-image
+    class="c-offer-card_image"
+    [src]="offer.imageUrl"
+    [alt]="offer.title"
+  />
+  <mat-card-header>
+    <mat-card-title class="c-offer-card_title">
+      {{ offer.title }}
+    </mat-card-title>
+    <mat-card-subtitle class="c-offer-card__merchant">
+      {{ offer.merchant }}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="c-offer-card_body">
+    <p class="c-offer-card_description">
+      {{ offer.description }}
+    </p>
+    <p class="c-offer-card_price">
+      {{ offer.price | currency : "EUR" }}
+    </p>
+    <p class="c-offer-card_meta">{{ offer.rating }} . {{ offer.votes }}</p>
+  </mat-card-content>
+  <mat-card-actions class="c-offer-card_footer" align="end">
+    <button
+      mat-icon-button
+      (click)="OnUpVote()"
+      ariia-label="Upvote Offer"
+    ></button>
+    <button
+      mat-icon-button
+      (click)="OnDownVote()"
+      ariia-label="Downvote Offer"
+    ></button>
+    <button mat-stroked-button color="primary" (click)="OnViewDetails()">
+      Details
+    </button>
+  </mat-card-actions>
+</mat-card>
