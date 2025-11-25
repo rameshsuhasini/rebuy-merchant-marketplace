@@ -8,7 +8,7 @@ import { OfferApiService } from '../api/offer-api.service';
   providedIn: 'root',
 })
 export class OfferService {
-  private offersSubject = new BehaviorSubject<Offer[] | null>(null);
+  private offersSubject = new BehaviorSubject<Offer[]>([]);
   offers$ = this.offersSubject.asObservable();
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
@@ -22,45 +22,57 @@ export class OfferService {
     this.loadingSubject.next(true);
     this.offerApiService.getOffers().subscribe({
       next: (offers) => {
-        this.offersSubject.next(offers);
+        this.offersSubject.next(offers ?? []);
         this.loadingSubject.next(false);
       },
-      error: () => {
+      error: (err) => {
+        console.error('Failed to load offers', err);
         this.loadingSubject.next(false);
       },
     });
   }
 
-  getOffersSortedByVotes(): Observable<Offer[]> {
+  /** Sorted by votes downvotes */
+  getOffersSortedDesc(): Observable<Offer[]> {
     return this.offers$.pipe(
-      map((offers) => [...(offers ?? [])].sort((a, b) => b.votes - a.votes))
+      map((offers) => [...offers].sort((a, b) => b.votes - a.votes))
     );
   }
 
-    /** Get a single offer from in-memory state */
-  getOfferById(id: number): Observable<Offer | undefined> {
+    /** Sorted by votes upvotes */
+  getOffersSortedAsc(): Observable<Offer[]> {
     return this.offers$.pipe(
-      map((offers) => offers?.find((o) => o.id === id))
+      map((offers) => [...offers].sort((a, b) => a.votes - b.votes))
     );
+  }
+
+  /** Get a single offer from in-memory state */
+  getOfferById(id: number): Observable<Offer | undefined> {
+    return this.offers$.pipe(map((offers) => offers?.find((o) => o.id === id)));
   }
 
   upvote(id: number): void {
     this.updateVotes(id, +1);
   }
 
-    downvote(id: number): void {
+  downvote(id: number): void {
     this.updateVotes(id, -1);
   }
 
   private updateVotes(id: number, delta: number): void {
-    const current = this.offersSubject.getValue();
-    if (!current) return;
+    this.offerApiService.updateVotes(id, delta).subscribe({
+      next: (updatedOffer) => {
+        const current = this.offersSubject.value;
+        if (!current) return;
 
-    const updated = current.map((offer) => 
-        offer.id === id ? { ...offer, votes: offer.votes + delta} : offer
-    )
-    this.offersSubject.next(updated)
+        const updated = current.map((offer) =>
+          offer.id === id ? updatedOffer : offer
+        );
+        this.offersSubject.next(updated);
+      },
+      error: (err) => {
+        console.error('Failed to update votes', err);
+      },
+    });
   }
-
-
 }

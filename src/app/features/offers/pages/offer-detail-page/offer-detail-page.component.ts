@@ -7,12 +7,11 @@ import { Offer } from '../../../../core/models/offer.model';
 import { OfferService } from '../../../../core/services/offer.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatRipple } from "@angular/material/core";
 
 @Component({
   selector: 'app-offer-detail-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule, MatRipple],
+  imports: [CommonModule, RouterModule, MatButtonModule, MatIconModule],
   templateUrl: './offer-detail-page.component.html',
   styleUrl: './offer-detail-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

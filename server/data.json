@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "title": "Refurbished iPhone 13",
+    "description": "Very good condition, 128GB, battery health above 85%.",
+    "price": 499,
+    "votes": 15,
+    "rating": 4.5,
+    "merchant": "TechStore Berlin",
+    "imageUrl": "https://via.placeholder.com/300x200?text=iPhone+13",
+    "purchaseUrl": "https://www.rebuy.de/product/1"
+  },
+  {
+    "id": 2,
+    "title": "Used Samsung Galaxy S21",
+    "description": "Good condition, 256GB, minor scratches on frame.",
+    "price": 429,
+    "votes": 8,
+    "rating": 4.1,
+    "merchant": "Mobile World",
+    "imageUrl": "https://via.placeholder.com/300x200?text=Galaxy+S21",
+    "purchaseUrl": "https://www.rebuy.de/product/2"
+  },
+  {
+    "id": 3,
+    "title": "Sony WH-1000XM4 Headphones",
+    "description": "Noise cancelling, like new, includes case and cable.",
+    "price": 199,
+    "votes": 20,
+    "rating": 4.8,
+    "merchant": "AudioPlus",
+    "imageUrl": "https://via.placeholder.com/300x200?text=Sony+WH-1000XM4",
+    "purchaseUrl": "https://www.rebuy.de/product/3"
+  },
+  {
+    "id": 4,
+    "title": "Apple MacBook Air M1 (2020)",
+    "description": "8GB RAM, 256GB SSD, very good condition.",
+    "price": 899,
+    "votes": 32,
+    "rating": 4.7,
+    "merchant": "RefurbLab",
+    "imageUrl": "https://via.placeholder.com/300x200?text=MacBook+Air+M1",
+    "purchaseUrl": "https://www.rebuy.de/product/4"
+  },
+  {
+    "id": 5,
+    "title": "Dell XPS 13",
+    "description": "13-inch, i7, 16GB RAM, 512GB SSD, good condition.",
+    "price": 799,
+    "votes": 12,
+    "rating": 4.3,
+    "merchant": "Notebook Center",
+    "imageUrl": "https://via.placeholder.com/300x200?text=Dell+XPS+13",
+    "purchaseUrl": "https://www.rebuy.de/product/5"
+  },
+  {
+    "id": 6,
+    "title": "Nintendo Switch Console",
+    "description": "Neon Red/Blue, includes dock and Joy-Con controllers.",
+    "price": 249,
+    "votes": 18,
+    "rating": 4.6,
+    "merchant": "GamerZone",
+    "imageUrl": "https://via.placeholder.com/300x200?text=Nintendo+Switch",
+    "purchaseUrl": "https://www.rebuy.de/product/6"
+  },
+  {
+    "id": 7,
+    "title": "Kindle Paperwhite (10th gen)",
+    "description": "8GB, waterproof, very good condition.",
+    "price": 99,
+    "votes": 9,
+    "rating": 4.4,
+    "merchant": "BookSmart",
+    "imageUrl": "https://via.placeholder.com/300x200?text=Kindle+Paperwhite",
+    "purchaseUrl": "https://www.rebuy.de/product/7"
+  },
+  {
+    "id": 8,
+    "title": "GoPro HERO9 Black",
+    "description": "Includes battery and mounting accessories.",
+    "price": 279,
+    "votes": 5,
+    "rating": 4.2,
+    "merchant": "CamPro",
+    "imageUrl": "https://via.placeholder.com/300x200?text=GoPro+HERO9",
+    "purchaseUrl": "https://www.rebuy.de/product/8"
+  }
+]

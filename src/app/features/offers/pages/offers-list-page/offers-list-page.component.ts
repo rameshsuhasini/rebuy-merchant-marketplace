@@ -1,24 +1,45 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { OfferCardComponent } from '../../../../shared/components/offer-card/offer-card.component';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Offer } from '../../../../core/models/offer.model';
 import { OfferService } from '../../../../core/services/offer.service';
+import { OfferCardComponent } from '../../../../shared/components/offer-card/offer-card.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+
+
+type SortOrder = 'votes-desc' | 'votes-asc';
 
 @Component({
   selector: 'app-offers-list-page',
   standalone: true,
-  imports: [CommonModule, OfferCardComponent, RouterModule],
+  imports: [CommonModule, OfferCardComponent, RouterModule, MatFormFieldModule,MatSelectModule],
   templateUrl: './offers-list-page.component.html',
   styleUrl: './offers-list-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OffersListPageComponent {
-  offers$: Observable<Offer[]> = this.offerService.getOffersSortedByVotes();
-  loading$ = this.offerService.loading$;
+ loading$ = this.offerService.loading$;
+
+  private sortOrder$ = new BehaviorSubject<SortOrder>('votes-desc');
+
+  
+  offers$: Observable<Offer[]> = combineLatest([
+    this.offerService.offers$,
+    this.sortOrder$,
+  ]).pipe(
+    map(([offers, order]) => {
+      const list = [...offers];
+      list.sort((a, b) =>
+        order === 'votes-desc' ? b.votes - a.votes : a.votes - b.votes
+      );
+      return list;
+    })
+  );
 
   constructor(private offerService: OfferService,
      private router: Router) {}
@@ -28,15 +49,16 @@ export class OffersListPageComponent {
      }
 
      OnUpVote(id: number): void {
-      console.log('Upvote', id);
       this.offerService.upvote(id);
      }
       OnDownVote(id: number): void {
-      console.log('Upvote', id);
         this.offerService.downvote(id);
      }
       OnViewDetails(id: number): void {
-      console.log('Upvote', id);
        this.router.navigate(['/offers', id]);
+     }
+
+     onSortOrderChange(order: SortOrder): void {
+      this.sortOrder$.next(order);
      }
 }

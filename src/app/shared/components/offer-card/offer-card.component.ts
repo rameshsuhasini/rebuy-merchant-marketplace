@@ -32,5 +32,10 @@ export class OfferCardComponent {
   OnViewDetails(): void{
     this.viewDetails.emit(this.offer.id);
   }
+
+  onImageError(): void {
+  // fallback to local placeholder if external image fails
+  this.offer.imageUrl = 'assets/placeholder.png';
+}
 }
 

@@ -5,6 +5,7 @@
     class="c-offer-card_image"
     [src]="offer.imageUrl"
     [alt]="offer.title"
+    (error)="onImageError()"
   />
   <mat-card-header>
     <mat-card-title class="c-offer-card_title">
@@ -21,7 +22,8 @@
     <p class="c-offer-card_price">
       {{ offer.price | currency : "EUR" }}
     </p>
-    <p class="c-offer-card_meta"> <mat-icon inline>star</mat-icon>{{ offer.rating }} . 
+    <p class="c-offer-card_meta"> <mat-icon inline>star</mat-icon>{{ offer.rating }} 
+        &nbsp; · &nbsp;
       <mat-icon inline>thumb_up</mat-icon> {{ offer.votes }}</p>
   </mat-card-content>
   <mat-card-actions class="c-offer-card_footer" align="end">

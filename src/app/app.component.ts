@@ -27,8 +27,5 @@ export class AppComponent {
   }
 
   ngOnInit(): void{
-    this.offerApi.getOffers().subscribe((offers) => {
-      console.log('Offers from API:', offers);
-    });
   }
 }

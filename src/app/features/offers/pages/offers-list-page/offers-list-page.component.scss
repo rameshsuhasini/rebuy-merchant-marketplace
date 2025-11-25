@@ -1,5 +1,18 @@
+.list-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Push sort dropdown to the right */
+.sort-field {
+  margin-left: auto;
+  min-width: 180px;
+}
+
 .c-page-title {
-    margin: 1rem 0;
+    margin: 1rem 0 1.5rem;
     font-size: 1.5rem;
     font-weight: 600;
 }
