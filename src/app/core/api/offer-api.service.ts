@@ -35,6 +35,13 @@ export class OfferApiService {
       .pipe(map((res) => res.products.map((p) => this.mapProductToOffer(p))));
   }
 
+    /** Fetch single offer by id */
+  getOfferById(id: number): Observable<Offer> {
+    return this.http
+      .get<DummyProduct>(`${this.baseUrl}/products/${id}`)
+      .pipe(map((p) => this.mapProductToOffer(p)));
+  }
+
    /** Adapter: DummyJSON product → internal Offer model */
   private mapProductToOffer(product: DummyProduct): Offer {
     return {

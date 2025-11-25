@@ -1,1 +1,28 @@
-<p>offer-detail-page works!</p>
+<button mat-button routerLink="/offers">← Back to offers</button>
+
+<div *ngIf="offer$ | async as offer; else loading" class="detail-layout">
+  
+  <div class="detail-layout__image">
+    <img [src]="offer.imageUrl" [alt]="offer.title" />
+  </div>
+
+  <div class="detail-layout__info">
+    <h1>{{ offer.title }}</h1>
+    <h3>{{ offer.merchant }}</h3>
+    <p>{{ offer.description }}</p>
+
+    <p class="price">{{ offer.price | currency: 'EUR' }}</p>
+    <p class="rating"><mat-icon>star</mat-icon> {{ offer.rating }} | <mat-icon>thumb_up</mat-icon>{{ offer.votes }}</p>
+
+    <div class="detail-layout__actions">
+      <button mat-raised-button color="accent" (click)="onPurchase(offer)">
+        Buy on rebuy
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <p>Loading offer...</p>
+</ng-template>
