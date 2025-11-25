@@ -3,7 +3,7 @@
 <div *ngIf="offer$ | async as offer; else loading" class="detail-layout">
   
   <div class="detail-layout__image">
-    <img [src]="offer.imageUrl" [alt]="offer.title" />
+    <img  [src]="'assets/images/' + offer.imageUrl" [alt]="offer.title" />
   </div>
 
   <div class="detail-layout__info">

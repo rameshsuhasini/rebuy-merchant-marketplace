@@ -3,7 +3,7 @@
     *ngIf="offer.imageUrl"
     mat-card-image
     class="c-offer-card_image"
-    [src]="offer.imageUrl"
+    [src]="'assets/images/' + offer.imageUrl"
     [alt]="offer.title"
     (error)="onImageError()"
   />
@@ -16,28 +16,42 @@
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="c-offer-card_body">
-   <!-- <p class="c-offer-card_description">
+    <!-- <p class="c-offer-card_description">
       {{ offer.description }}
     </p>-->
     <p class="c-offer-card_price">
       {{ offer.price | currency : "EUR" }}
     </p>
-    <p class="c-offer-card_meta"> <mat-icon inline>star</mat-icon>{{ offer.rating }} 
-        &nbsp; · &nbsp;
-      <mat-icon inline>thumb_up</mat-icon> {{ offer.votes }}</p>
+
+    <p class="c-offer-card_meta">
+      <mat-icon inline>star</mat-icon>{{ offer.rating }}
+      &nbsp;&nbsp;
+      <mat-icon inline>thumb_up</mat-icon> {{ offer.votes }}
+    </p>
   </mat-card-content>
   <mat-card-actions class="c-offer-card_footer" align="end">
     <button
       mat-icon-button
       (click)="OnUpVote()"
-      ariia-label="Upvote Offer"
-    > <mat-icon>thumb_up</mat-icon></button>
+      aria-label="Upvote Offer"
+      class="icon-button"
+    >
+      <mat-icon>thumb_up</mat-icon>
+    </button>
     <button
       mat-icon-button
       (click)="OnDownVote()"
-      ariia-label="Downvote Offer"
-    > <mat-icon>thumb_down</mat-icon></button>
-    <button mat-stroked-button color="primary" (click)="OnViewDetails()"  data-testid="offer-details-button">
+      aria-label="Downvote Offer"
+      class="icon-button"
+    >
+      <mat-icon>thumb_down</mat-icon>
+    </button>
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="OnViewDetails()"
+      data-testid="offer-details-button"
+    >
       Details
     </button>
   </mat-card-actions>

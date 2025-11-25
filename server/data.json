@@ -7,7 +7,7 @@
     "votes": 15,
     "rating": 4.5,
     "merchant": "TechStore Berlin",
-    "imageUrl": "https://via.placeholder.com/300x200?text=iPhone+13",
+    "imageUrl": "iphone13.jpeg",
     "purchaseUrl": "https://www.rebuy.de/product/1"
   },
   {
@@ -18,7 +18,7 @@
     "votes": 8,
     "rating": 4.1,
     "merchant": "Mobile World",
-    "imageUrl": "https://via.placeholder.com/300x200?text=Galaxy+S21",
+    "imageUrl": "Samsung.jpeg",
     "purchaseUrl": "https://www.rebuy.de/product/2"
   },
   {
@@ -29,7 +29,7 @@
     "votes": 20,
     "rating": 4.8,
     "merchant": "AudioPlus",
-    "imageUrl": "https://via.placeholder.com/300x200?text=Sony+WH-1000XM4",
+    "imageUrl": "sonyHeadphone.jpeg",
     "purchaseUrl": "https://www.rebuy.de/product/3"
   },
   {
@@ -40,7 +40,7 @@
     "votes": 32,
     "rating": 4.7,
     "merchant": "RefurbLab",
-    "imageUrl": "https://via.placeholder.com/300x200?text=MacBook+Air+M1",
+    "imageUrl": "Macbook.jpeg",
     "purchaseUrl": "https://www.rebuy.de/product/4"
   },
   {
@@ -51,7 +51,7 @@
     "votes": 12,
     "rating": 4.3,
     "merchant": "Notebook Center",
-    "imageUrl": "https://via.placeholder.com/300x200?text=Dell+XPS+13",
+    "imageUrl": "Dell.jpg",
     "purchaseUrl": "https://www.rebuy.de/product/5"
   },
   {
@@ -62,7 +62,7 @@
     "votes": 18,
     "rating": 4.6,
     "merchant": "GamerZone",
-    "imageUrl": "https://via.placeholder.com/300x200?text=Nintendo+Switch",
+    "imageUrl": "Nintendo.jpeg",
     "purchaseUrl": "https://www.rebuy.de/product/6"
   },
   {
@@ -73,7 +73,7 @@
     "votes": 9,
     "rating": 4.4,
     "merchant": "BookSmart",
-    "imageUrl": "https://via.placeholder.com/300x200?text=Kindle+Paperwhite",
+    "imageUrl": "Kindle.jpeg",
     "purchaseUrl": "https://www.rebuy.de/product/7"
   },
   {
@@ -84,7 +84,7 @@
     "votes": 5,
     "rating": 4.2,
     "merchant": "CamPro",
-    "imageUrl": "https://via.placeholder.com/300x200?text=GoPro+HERO9",
+    "imageUrl": "Gopro.jpeg",
     "purchaseUrl": "https://www.rebuy.de/product/8"
   }
 ]
