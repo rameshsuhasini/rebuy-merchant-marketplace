@@ -1,4 +1,4 @@
-<mat-card class="c-offer-card">
+<mat-card class="c-offer-card" data-testid="offer-card">
   <img
     *ngIf="offer.imageUrl"
     mat-card-image
@@ -37,7 +37,7 @@
       (click)="OnDownVote()"
       ariia-label="Downvote Offer"
     > <mat-icon>thumb_down</mat-icon></button>
-    <button mat-stroked-button color="primary" (click)="OnViewDetails()">
+    <button mat-stroked-button color="primary" (click)="OnViewDetails()"  data-testid="offer-details-button">
       Details
     </button>
   </mat-card-actions>
