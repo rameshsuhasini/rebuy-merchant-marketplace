@@ -1,10 +1,16 @@
+/// <reference types="jasmine" />
+
+declare const expect: (actual: any) => jasmine.Matchers<any>;
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     }).compileComponents();
   });
 
@@ -24,6 +30,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, rebuy-merchant-marketplace');
+    const title = compiled.querySelector('.app-toolbar__title')?.textContent;
+
+    expect(title).toContain('Rebuy Merchant Marketplace');
   });
 });

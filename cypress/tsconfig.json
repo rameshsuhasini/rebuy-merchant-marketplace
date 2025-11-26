@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "ES2019",
     "lib": ["ES2019", "dom"],
-    "types": ["cypress"]
+    "types": ["cypress","node"]
   },
-  "include": ["**/*.cy.ts"]
+  "include": ["**/*.cy.ts"],
+  "supportFile": false
 }
