@@ -35,7 +35,7 @@ export class OfferCardComponent {
 
   onImageError(): void {
   // fallback to local placeholder if external image fails
-  this.offer.imageUrl = '/placeholder.png';
+  this.offer.imageUrl = 'placeholder.png';
 }
 }
 

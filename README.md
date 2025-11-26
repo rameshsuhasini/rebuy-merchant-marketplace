@@ -148,9 +148,8 @@ From the frontend folder:
 
 cd ../rebuy-merchant-marketplace
 npm run test
-# or
+or
 ng test
-
 Opens a new window to run the test cases 
 
 2. Cypress End-to-End Tests
@@ -184,6 +183,8 @@ Angular Build → S3 → CloudFront CDN → Browser
 'http://rebuy-merchant-backend-env.eba-j9mdrzfg.eu-north-1.elasticbeanstalk.com/offers'
 
 ## Frontend URL:
+
+'https://main.d1an6t2xjknipf.amplifyapp.com/offers'
 
 
 ## Notes for Reviewers
