@@ -24,29 +24,62 @@ The app is built as a **layered system** with a frontend, API layer, and a backe
 - Node.js mock API (e.g. Express or json-server)
 - In-memory / JSON file data store for `Offer` entities
 
-## Architeture
+## High-Level End-to-End Flow
+User (Browser)
+   │
+   ▼
+Angular Frontend (SPA)
+   │  (HTTP, JSON)
+   ▼
+Backend API (Node.js + Express)
+   │
+   ▼
+Service Layer (Offer Service: business rules, mapping)
+   │
+   ▼
+Data Layer (Mock JSON / in-memory store → future DB)
+
+## Architecture Overview
+
 ┌───────────────────────────────────────────┐
 │                 Frontend                  │
-│  Angular Components (List, Details)       │
-│  - offers-list component                  │
-│  - offer-details component                │
+│  - Angular components                     │
+│    - Offers List                          │
+│    - Offer Details                        │
+│  - Routing (/offers, /offers/:id)         │
+│  - Angular Material UI                    │
 └──────────────▲────────────────────────────┘
                │
                │ uses
                │
 ┌──────────────┴────────────────────────────┐
 │        Frontend Application Layer         │
-│  - OffersService (BehaviorSubject)   │
+│  - OffersStoreService (RxJS BehaviorSubject)
 │  - OffersApiService (HTTP client)         │
+│    - GET /offers                          │
+│    - GET /offers/:id                      │
+│    - POST/PATCH /offers/:id/vote          │
 └──────────────▲────────────────────────────┘
                │
                │ HTTP (REST)
                │
 ┌──────────────┴────────────────────────────┐
 │               Backend API                 │
-│  - GET  /offers                           │
-│  - GET  /offers/:id                       │
-│  - PATCH/POST /offers/:id/vote            │
+│  - Express controllers / routes           │
+│    - GET /offers                          │
+│    - GET /offers/:id                      │
+│    - POST /offers/:id/vote                │
+└──────────────▲────────────────────────────┘
+               │
+               │ delegates
+               │
+┌──────────────┴────────────────────────────┐
+│              Service Layer                │
+│  - OfferService                           │
+│    - getAllOffers()                       │
+│    - getOfferById(id)                     │
+│    - upvoteOffer(id)                      │
+│  - Contains business logic & validation   │
 └──────────────▲────────────────────────────┘
                │
                │ reads/writes
@@ -54,7 +87,10 @@ The app is built as a **layered system** with a frontend, API layer, and a backe
 ┌──────────────┴────────────────────────────┐
 │                Data Layer                 │
 │  - In-memory array or db.json file        │
-│  - Can be swapped out with real DB        │
+│  - Responsible for persistence-like ops   │
+│  - Can be replaced by:                    │
+│    - PostgreSQL/MySQL (AWS RDS)           │
+│    - DynamoDB                             │
 └───────────────────────────────────────────┘
 
 ## Prerequisites
@@ -68,8 +104,8 @@ npm install -g @angular/cli
 
 ## Installation
 
-git clone <your-repo-url>.git
-cd <your-repo-folder>
+git clone [<your-repo-url>.git](https://github.com/rameshsuhasini/rebuy-merchant-marketplace.git)
+cd rebuy-merchant-marketplace
 
 Install both Frontend and Backend dependencies
 
@@ -79,7 +115,7 @@ Install both Frontend and Backend dependencies
 
 From the server folder:
 
-cd server
+cd ../rebuy-merchant-marketplace/server
 npm run dev
 
 Default backend URL:
@@ -90,7 +126,7 @@ http://localhost:3000
 
 From the frontend folder:
 
-cd ../frontend
+cd ../rebuy-merchant-marketplace
 npm start
 # or
 ng serve
@@ -110,21 +146,75 @@ End-to-end tests with Cypress
 
 From the frontend folder:
 
-cd frontend
+cd ../rebuy-merchant-marketplace
 npm run test
 # or
 ng test
+
+Opens a new window to run the test cases 
 
 2. Cypress End-to-End Tests
 Setup
 
 From frontend (if not already installed):
 
-cd frontend
+cd ../rebuy-merchant-marketplace
 npm install --save-dev cypress
 npx cypress open
 
 select the E2E testing in Cypress window , then Test in chrome and finally select the file offers.cy.ts and test starts to run.
+
+## Deployment on AWS
+
+The system is deployment ready and supports a scalable AWS architecture.
+
+Proposed AWS deployment landscape
+Angular Build → S3 → CloudFront CDN → Browser
+                              │
+                              ▼
+                     API Gateway / Load Balancer
+                              │
+                              ▼
+                    Node.js Backend (EC2 / Lambda)
+                              │
+                              ▼
+                       AWS RDS / DynamoDB
+
+## Backend API Base URL:
+'http://rebuy-merchant-backend-env.eba-j9mdrzfg.eu-north-1.elasticbeanstalk.com/offers'
+
+## Frontend URL:
+
+
+## Notes for Reviewers
+
+This project demonstrates:
+
+A full end-to-end system:
+
+Angular SPA frontend
+
+Node.js backend with a service layer
+
+Mock data layer designed to be swapped with a real database
+
+Unit tests and Cypress E2E tests
+
+Clear separation of concerns:
+
+UI, application/store, API, service, and data layers
+
+Cloud-readiness:
+
+Architecture is hosted on AWS (S3 + CloudFront + API Gateway/EC2 + RDS/DynamoDB)
+
+To run the full system locally:
+
+cd server && npm start
+cd frontend && npm start
+(Optional) cd frontend && npm test
+(Optional) cd frontend && npm run e2e
+
 
 ## Further help
 
